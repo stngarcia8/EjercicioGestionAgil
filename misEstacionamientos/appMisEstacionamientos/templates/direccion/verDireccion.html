@@ -1,0 +1,88 @@
+{% extends 'template.html' %}
+{% load staticfiles %}
+
+{% block titleHead %}
+<title>Mis Estacionamientos - Ver dirección.</title>
+{% endblock %}
+
+{% block jsHead %}
+<script type="text/javascript"
+  src="http://maps.google.com/maps/api/js?key=AIzaSyBjklbb3oO43c-wXgwfK_wz8Dd5pZE_lcA"></script>
+{% endblock %}
+
+{% block contenido %}
+
+<h1>Información de dirección.</h1>
+<hr>
+<table class="table table-responsive table-bordered table-hover table-striped">
+  <tbody>
+    <tr>
+      <td>Id</td>
+      <td>{{ direccion.id }}</td>
+    </tr>
+    <tr>
+      <td>Tipo de direccion</td>
+      <td>{{ direccion.tipo_direccion.nombre }}</td>
+    </tr>
+    <tr>
+      <td>Dirección</td>
+      <td>{{ direccion.direccion }}</td>
+    </tr>
+    <tr>
+      <td>Número</td>
+      <td>{{ direccion.numero }}</td>
+    </tr>
+    <tr>
+      <td>Tipo vivienda</td>
+      <td>{{ direccion.tipo_vivienda.nombre }}</td>
+    </tr>
+    <tr>
+      <td>Piso</td>
+      <td>{{ direccion.piso }}</td>
+    </tr>
+    <tr>
+      <td>Departamento</td>
+      <td>{{ direccion.departamento }}</td>
+    </tr>
+    <tr>
+      <td>Villa/Población</td>
+      <td>{{ direccion.villa_poblacion }}</td>
+    </tr>
+    <tr>
+      <td>Comuna</td>
+      <td>{{ direccion.comuna.nombre }}</td>
+    </tr>
+    <tr>
+      <td>Código postal</td>
+      <td>{{ direccion.codigo_postal }}</td>
+    </tr>
+    <tr>
+      <td>Longitud</td>
+      <td id="longitud">{{ direccion.longitudLocator }}</td>
+    </tr>
+    <tr>
+      <td>Latitud</td>
+      <td id="latitud">{{ direccion.latitudLocator }}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <a class="btn btn-light" href="{{ direccion.get_update_url }}" role="button">Editar</a>
+        <a class="btn btn-light" href="{{ direccion.get_delete_url }}" role="button">Eliminar</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{% if direccion.direccionLocator %}
+<h2>Mapa</h2>
+<button id="btnMapa" name="btnMapa" onclick="cargarMapa();">Ver mapa</button>
+<div id='mapa' style="position:relative;
+      width:400px; height:300px; border:10px solid #eaeaea;">
+</div>
+{% endif %}
+<a class="btn btn-primary" href="{% url 'listaDeDirecciones' %}" role="button"> Volver </a></p>
+{% endblock %}
+
+{% block jsBody %}
+<script type="text/javascript" src="{% static 'js/mapa.js' %}"></script>
+{% endblock %}

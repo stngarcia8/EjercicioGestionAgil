@@ -1,0 +1,109 @@
+{% extends 'template.html' %}
+
+{% block titleHead %}
+<title>Mis Estacionamientos - Lista de estacionamientos.</title>
+{% endblock %}
+
+{% block contenido %}
+
+<h1>Lista de estacionamiento.</h1>
+<hr>
+<p>
+    <a class="btn btn-primary" href="{% url 'RegistrarEstacionamiento' %}" role="button">Agregar estacionamiento</a>
+    <form class="form-inline my-2 my-lg-0" action="{% url 'listaEstacionamientos' %}" method="get"
+        accept-charset="utf-8">
+        <label class="control-label m-2" for="buscar">
+            <span class="glyphicon glyphicon-filter">Estacionamiento a buscar:</span>
+        </label>
+        <input name="q" class="form-control m-2" type="text" aria-label="buscar" value="">
+        <button class="btn btn-outline-success m-2" type="submit">
+            <span class="gliphicon gliphicon-search">Buscar</span>
+        </button>
+    </form>
+</p>
+<hr>
+
+{% if estacionamiento_list %}
+<table class="table table-responsive table-bordered">
+    <thead>
+        <tr>
+            <th>Estacionamientos</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for estacionamiento in estacionamiento_list %}
+        <tr>
+            <td>{{ estacionamiento.nombreDescriptivo }} {{ estacionamiento.precioEstacionamiento }}
+                {{ estacionamiento.disponibilidadEstacionamiento }}</td>
+            <td>
+                <a class="btn btn-light" href="{{ estacionamiento.get_absolute_url }}" role="button">
+                    <span class="glyphicon glyphicon-info-sign"> Detalles</span>
+                </a>
+                {% if estacionamiento.disponibilidadEstacionamiento %}
+                <a class="btn btn-light" href="{{ estacionamiento.get_disable_url }}" role="button">
+                    <span class="glyphicon glyphicon-info-sign"> Inhabilitar</span>
+                </a>
+                {% else %}
+                <a class="btn btn-light" href="{{ estacionamiento.get_enable_url }}" role="button">
+                    <span class="glyphicon glyphicon-info-sign"> Habilitar</span>
+                </a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<!-- Menú de paginación -->
+{% if is_paginated %}
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+
+        {% if page_obj.has_previous %}
+        <li class="page-item ">
+            <a class="page-link" href="?page=1">&laquo;&laquo;</a>
+        </li>
+        <li class="page-item ">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">&laquo;&laquo;</a>
+        </li>
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">&laquo;</a>
+        </li>
+        {% endif %}
+
+        {% for i in paginator.page_range %}
+        <li class="page-item {% if page_obj.number == i %}active{% endif %}">
+            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+        </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item ">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+        </li>
+        <li class="page-item ">
+            <a class="page-link" href="?page=last">&raquo;&raquo;</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">&raquo;</a>
+        </li>
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">&raquo;&raquo;</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+{% else %}
+<p class="lead">
+    No tiene estacionamientos registrados aún.
+</p>
+{% endif %}
+
+{% endblock %}

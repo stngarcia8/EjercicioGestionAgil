@@ -1,0 +1,19 @@
+{% extends 'template.html' %}
+
+{% block titleHead %}
+<title>Mis Estacionamientos - Bienvenida!.</title>
+{% endblock %}
+
+{% block contenido %}
+<h1>Bienvenido!</h1>
+<hr>
+<p class="lead">
+  Su registro se ha realizado correctamente,
+  Inicie sesión, para comenzar a utilizar nuestra plataforma.<br>
+  Esperamos que disfrute su estadía con nosotros.<br><br>
+  Nota: Para iniciar sesión por primera vez su nombre de usuario y contraseña corresponden a su rut.
+  Se recomienda que pueda cambiar estos valores desde su perfil de usuario.<br>
+  <br><br>
+</p>
+<a class="btn btn-lg btn-primary" href="{% url 'iniciarSesion' %}" role="button">Iniciar sesión</a>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'template.html' %}
+
+{% block titleHead %}
+<title>Mis Estacionamientos - Ver vehículo.</title>
+{% endblock %}
+
+{% block contenido %}
+<h1>Información de vehículo.</h1>
+<hr>
+
+<table class="table table-responsive table-bordered table-hover table-striped">
+  <tbody>
+    <tr>
+      <td>Id</td>
+      <td>{{ vehiculo.id }}</td>
+    </tr>
+    <tr>
+      <td>Patente</td>
+      <td>{{ vehiculo.patente }}</td>
+    </tr>
+    <tr>
+      <td>Marca</td>
+      <td>{{ vehiculo.marca.nombre }}</td>
+    </tr>
+    <tr>
+      <td>Modelo</td>
+      <td>{{ vehiculo.modelo }}</td>
+    </tr>
+    <tr>
+      <td>Color</td>
+      <td>{{ vehiculo.color.nombre }}</td>
+    </tr>
+    <tr>
+      <td>Dueño</td>
+      <td>{{ vehiculo.usuario.first_name }} {{ vehiculo.usuario.last_name }}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <a class="btn btn-light" href="{{ vehiculo.get_update_url }}" role="button"> Editar </a>
+        <a class="btn btn-light" href="{{ vehiculo.get_delete_url }}" role="button"> Eliminar </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a class="btn btn-primary" href="{% url 'listaDeVehiculos' %}" role="button"> Volver </a>
+{% endblock %}

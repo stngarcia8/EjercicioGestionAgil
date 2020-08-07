@@ -1,0 +1,18 @@
+{% extends 'template.html' %}
+
+{% block titleHead %}
+<title>Mis Estacionamientos - Eliminar dirección.</title>
+{% endblock %}
+
+{% block contenido %}
+<h1>Eliminar dirección.</h1>
+<hr>
+<p class="lead">
+  ¿Está seguro de eliminar la dirección?
+</p>
+<form action="" method="post">
+  {% csrf_token %}
+  <button class="btn btn-lg btn-light " type="submit">Eliminar Dirección</button>
+  <a class="btn btn-primary" href="{% url 'listaDeDirecciones' %}" role="button">Cancelar</a></p>
+</form>
+{% endblock %}

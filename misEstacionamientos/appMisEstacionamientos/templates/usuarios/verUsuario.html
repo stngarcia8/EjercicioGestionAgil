@@ -1,0 +1,55 @@
+{% extends 'template.html' %}
+
+{% block titleHead %}
+<title>Mis Estacionamientos - Ver perfil de usuario.</title>
+{% endblock %}
+
+{% block contenido %}
+
+<h1>Perfil de usuario.</h1>
+<hr>
+<div id="cuerpo">
+  <table class="table table-responsive table-bordered table-hover table-striped">
+    <tbody>
+      <tr>
+        <td>Id</td>
+        <td>{{ request.user.id }}</td>
+      </tr>
+      <tr>
+        <td>Usuario</td>
+        <td>{{ request.user.username }}</td>
+      </tr>
+      <tr>
+        <td>Nombre completo</td>
+        <td>{{ persona.nombre }} {{ persona.apellido }}</td>
+      </tr>
+      <tr>
+        <td>Rut</td>
+        <td>{{ persona.rut }}</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>{{ persona.email }}</td>
+      </tr>
+      <tr>
+        <td>Teléfono</td>
+        <td>{{ persona.telefono }}</td>
+      </tr>
+      <tr>
+        <td>Fecha de nacimiento</td>
+        <td>{{ persona.nacimiento }}</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <a class="btn btn-light" href="{{ persona.get_update_url }}" role="button">Editar </a>
+          <a class="btn btn-light" href="{% url 'eliminarUsuario' request.user.id %}" role="button">Eliminar cuenta
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+{% endblock %}

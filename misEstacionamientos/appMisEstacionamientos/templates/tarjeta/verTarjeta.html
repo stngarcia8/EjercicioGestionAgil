@@ -1,0 +1,43 @@
+{% extends 'template.html' %}
+
+{% block titleHead %}
+<title>Mis Estacionamientos - Ver tarjeta de pago.</title>
+{% endblock %}
+
+{% block contenido %}
+<h1>Información de tarjeta de pago.</h1>
+<hr>
+
+<table class="table table-responsive table-bordered table-hover table-striped">
+  <tbody>
+    <tr>
+      <td>Id</td>
+      <td>{{ tarjeta.id }}</td>
+    </tr>
+    <tr>
+      <td>Tipo de tarjeta</td>
+      <td>{{ tarjeta.tipo_tarjeta.nombre }}</td>
+    </tr>
+    <tr>
+      <td>Banco</td>
+      <td>{{ tarjeta.banco.nombre }}</td>
+    </tr>
+    <tr>
+      <td>Número</td>
+      <td>{{ tarjeta.numero_tarjeta }}</td>
+    </tr>
+    <tr>
+      <td>Vencimiento</td>
+      <td>{{ tarjeta.vencimiento }}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <a class="btn btn-light" href="{{ tarjeta.get_update_url }}" role="button">Editar</a>
+        <a class="btn btn-light" href="{{ tarjeta.get_delete_url }}" role="button">Eliminar</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a class="btn btn-primary" href="{% url 'listaDeTarjetas' %}" role="button">Volver</a>
+{% endblock %}

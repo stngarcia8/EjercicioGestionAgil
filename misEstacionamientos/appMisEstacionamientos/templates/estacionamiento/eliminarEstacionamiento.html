@@ -1,0 +1,18 @@
+{% extends 'template.html' %}
+<!-- -->
+{% block titleHead %}
+<title>Mis Estacionamientos - Eliminar Estacionamiento.</title>
+{% endblock %}
+<!-- -->
+{% block contenido %}
+<h1>Eliminar estacionamiento.</h1>
+<hr>
+<p class="lead">
+    ¿Está seguro de eliminar el estacionamiento?
+</p>
+<form action="" method="post">
+    {% csrf_token %}
+    <button class="btn btn-lg btn-light" type="submit">Eliminar Estacionamiento</button>
+    <a class="btn btn-primary" href="{% url 'listaEstacionamientos' %}" role="button">Cancelar</a>
+</form>
+{% endblock %}

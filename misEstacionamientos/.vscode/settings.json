@@ -1,0 +1,14 @@
+{
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
+	"python.linting.flake8Args": ["--max-line-length=120"],
+    "python.formatting.provider": "black",
+	"python.formatting.blackPath": "D:\\appz\\Python\\miniconda3-4.5.12\\Scripts\\black",
+	"python.formatting.blackArgs": ["--line-length=120"],
+	"editor.formatOnSave": true,
+	"files.exclude": {
+        "**/*.pic",
+		"**/__*.py"
+    }
+}

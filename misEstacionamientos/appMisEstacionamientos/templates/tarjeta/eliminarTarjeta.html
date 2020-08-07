@@ -1,0 +1,18 @@
+{% extends 'template.html' %}
+
+{% block titleHead %}
+<title>Mis Estacionamientos - Eliminar tarjeta de pago.</title>
+{% endblock %}
+
+{% block contenido %}
+<h1>Eliminar tarjeta de pago.</h1>
+<hr>
+<p class="lead">
+  ¿Está seguro de eliminar la tarjeta de pago?
+</p>
+<form action="" method="post">
+  {% csrf_token %}
+  <button class="btn btn-lg btn-light " type="submit">Eliminar Tarjeta</button>
+  <a class="btn btn-primary" href="{% url 'listaDeTarjetas' %}" role="button">Cancelar</a>
+</form>
+{% endblock %}
